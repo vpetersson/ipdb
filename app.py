@@ -2,8 +2,8 @@
 
 from bottle import request
 from bottle import Bottle, run
-from datetime import datetime
 from tabulate import tabulate
+from datetime import datetime, timedelta
 import json
 
 
@@ -23,15 +23,19 @@ def append_ip(hostname, interface, ip, timestamp):
 
 
 def get_ips():
+    # Only display results newer than 48 hours.
+    cutoff = datetime.utcnow() - timedelta(days=2)
     result = []
+
     for r in db.values():
-        record = [
-            r['hostname'],
-            r['interface'],
-            r['ip'],
-            r['timestamp'].strftime('%Y-%m-%d %H:%M'),
-        ]
-        result.append(record)
+        if r['timestamp'] > cutoff:
+            record = [
+                r['hostname'],
+                r['interface'],
+                r['ip'],
+                r['timestamp'].strftime('%Y-%m-%d %H:%M'),
+            ]
+            result.append(record)
     return tabulate(
         result,
         headers=['Hostname', 'Interface', 'IP', 'Timestamp']
