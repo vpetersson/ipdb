@@ -6,7 +6,11 @@ The tool was born since my coworking place uses a weird DHCP configuration where
 
 ## Running
 
+The easiest way to run IPDB is to simply fire it up in a Docker container. The latest version is automatically available from Docker Hub, so all you need to do is to run:
+
+```
 $ docker run -d -p 80:80 --name ipdb vpetersson/ipdb
+```
 
 ## Submitting to the database
 
