@@ -17,7 +17,7 @@ $ docker run -d -p 80:80 --name ipdb vpetersson/ipdb
 The recommend way is to download [report.sh](https://raw.githubusercontent.com/vpetersson/ipdb/master/report.sh) and simply run it as follows (probably hourly):
 
 ```
-./report.sh eth0
+$ ./report.sh eth0
 ```
 
 Alternatively, you could submit IPs to the database using `curl` and do a POST directly:
